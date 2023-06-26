@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Post, Req, Res, UsePipes, ValidationPipe } from '@nestjs/common';
 import { TodoService } from 'src/todo/services/todo/todo.service';
 import {Request, Response} from 'express';
-import { CreateToDoDto } from 'src/todo/dtos/todo.dto';
+import { CreateToDoDto } from '../../dtos/todo.dto';
 
  
 @Controller('todo')
