@@ -12,8 +12,8 @@ export class TodoModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(ValidateTodo).forRoutes(
       {
-        path: 'todo/:id',
-        method: RequestMethod.GET,
+        path: 'todo/create',
+        method: RequestMethod.POST,
       }
     )
   }
