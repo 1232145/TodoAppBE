@@ -32,4 +32,19 @@ export class TodoService {
     createTodo(createToDoDto: CreateToDoDto) {
         this.todoList.push(createToDoDto);
     }
+
+    deleteTodo(id: Number) {
+        let removed = false;
+
+        this.todoList = this.todoList.filter(item => {
+            if (item.id !== id) {
+                return item;
+            }
+            else {
+                removed = true;
+            }
+        })
+
+        return removed;
+    }
 }

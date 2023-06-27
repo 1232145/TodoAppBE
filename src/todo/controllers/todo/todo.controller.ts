@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Req, Res, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Req, Res, UsePipes, ValidationPipe } from '@nestjs/common';
 import { TodoService } from 'src/todo/services/todo/todo.service';
 import {Request, Response} from 'express';
 import { CreateToDoDto } from '../../dtos/todo.dto';
@@ -34,4 +34,17 @@ export class TodoController {
     createTodo(@Body() createToDoDto: CreateToDoDto) {
         this.todoService.createTodo(createToDoDto);        
     }
+
+    @Delete(':id')
+    deleteTodo(@Param('id', ParseIntPipe) id: Number, @Req() req: Request, 
+    @Res() res: Response) {
+        const removed = this.todoService.deleteTodo(id);
+
+        if (removed) {
+            res.send({msg: 'Removed successfully'});
+        }
+        else {
+            res.status(400).send({error: 'Removed unsucessful'});
+        }
+    } 
 }
