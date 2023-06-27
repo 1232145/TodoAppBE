@@ -31,8 +31,10 @@ export class TodoController {
 
     @Post('create')
     @UsePipes(new ValidationPipe())
-    createTodo(@Body() createToDoDto: CreateToDoDto) {
-        this.todoService.createTodo(createToDoDto);        
+    createTodo(@Body() createToDoDto: CreateToDoDto, @Req() req: Request, 
+    @Res() res: Response) {
+        this.todoService.createTodo(createToDoDto); 
+        res.send({msg: 'Created successfully'});
     }
 
     @Delete(':id')
