@@ -1,18 +1,15 @@
-// auth.guard.ts
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
-import { Observable } from 'rxjs';
+import { LoginService } from '../../services/login/login.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  canActivate(
-    context: ExecutionContext,
-  ): boolean | Promise<boolean> | Observable<boolean> {
-    // Retrieve the access_token from the request headers
+  constructor(private readonly loginService: LoginService) {}
+
+  canActivate(context: ExecutionContext){
     const request = context.switchToHttp().getRequest();
-    const access_token = request.headers['authorization'];
+    const { username, password } = request.body;
 
-
-    const isAuthenticated = true;
+    const isAuthenticated = this.loginService.validateUser(username, password) !== undefined;
 
     return isAuthenticated;
   }
