@@ -37,10 +37,10 @@ export class TodoController {
         res.send({msg: 'Created successfully'});
     }
 
-    @Delete(':id')
-    deleteTodo(@Param('id', ParseIntPipe) id: Number, @Req() req: Request, 
+    @Delete(':job')
+    deleteTodo(@Param('job') job: string, @Req() req: Request, 
     @Res() res: Response) {
-        const removed = this.todoService.deleteTodo(id);
+        const removed = this.todoService.deleteTodo(job);
 
         if (removed) {
             res.send({msg: 'Removed successfully'});

@@ -20,11 +20,6 @@ import { LoginService } from './services/login/login.service';
 
 export class TodoModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(ValidateTodo).forRoutes(
-      {
-        path: 'todo/create',
-        method: RequestMethod.POST,
-      }
-    )
+    consumer.apply(ValidateTodo).forRoutes(TodoController);
   }
 }

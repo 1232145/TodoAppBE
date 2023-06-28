@@ -33,11 +33,11 @@ export class TodoService {
         this.todoList.push(createToDoDto);
     }
 
-    deleteTodo(id: Number) {
+    deleteTodo(job: string) {
         let removed = false;
 
         this.todoList = this.todoList.filter(item => {
-            if (item.id !== id) {
+            if (item.job !== job) {
                 return item;
             }
             else {
